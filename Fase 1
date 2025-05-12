@@ -1,0 +1,27 @@
+Fase 1
+
+Símbolos
+
+Operadores Aritméticos: "+", "-", "*", "/", "//", "%",   " ** ".
+
+Operadores Relacionais: "=="; "!=", ">", "<", ">=", " <="
+
+Operadores Booleanos: and, or, not
+
+Símbolos de Atribuição: "=", "+=", "-=" , "*=", "/=", " //=", " %=",  " **= ".
+
+Símbolos Identificadores de Tipos de Dados: int, float, str, list, dict, tuple, bool, set.
+ 
+Símbolo Identificador de Início de Bloco: ":"
+
+
+Palavras
+Identificadoras de Blocos: if, elif, else, for, while, def, class, try, except, finally, with
+
+Tipos de Dados: int, float, str, bool, list, tuple, dict, set, None, True, False
+
+Funções Built-in: print()   input()   len()   range()   type()   isinstance()   sum()   max()   min()   open()   sorted()
+
+Operadores Booleanos (Palavras-chave): and   or   not   is   in
+
+Demais: import   from   as  in pass   return   yield   break   continue   global   nonlocal   lambda   assert   del
