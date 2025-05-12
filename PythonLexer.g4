@@ -1,90 +1,49 @@
-lexer grammar PythonLexer;
+lexer grammar ExprLexer;
 
-// Tokens para símbolos (Operadores, palavras-chave, etc.)
-AND     : 'and';
-OR      : 'or';
-NOT     : 'not';
-IS      : 'is';
-IN      : 'in';
-IF      : 'if';
-ELIF    : 'elif';
-ELSE    : 'else';
-FOR     : 'for';
-WHILE   : 'while';
-DEF     : 'def';
-CLASS   : 'class';
-TRY     : 'try';
-EXCEPT  : 'except';
-FINALLY : 'finally';
-WITH    : 'with';
-RETURN  : 'return';
-PASS    : 'pass';
-YIELD   : 'yield';
-BREAK   : 'break';
-CONTINUE: 'continue';
-IMPORT  : 'import';
-FROM    : 'from';
-AS      : 'as';
-GLOBAL  : 'global';
-NONLOCAL: 'nonlocal';
-LAMBDA  : 'lambda';
-ASSERT  : 'assert';
-DEL     : 'del';
-RAISE   : 'raise';
-TRUE    : 'True';
-FALSE   : 'False';
-NONE    : 'None';
-NUMBER  : [0-9]+ ('.' [0-9]+)?; // Números inteiros e de ponto flutuante
-STRING  : '"' ( ~["\\] | '\\' . )* '"'
-        | '\'' ( ~['\\] | '\\' . )* '\'';
+QUOTE: '"';
+DOT : '.';
+COMMA : ',' ;
+SEMI : ';' ;
+COLON : ':' ;
+LPAREN : '(' ;
+RPAREN : ')' ;
+LCURLY : '{' ;
+RCURLY : '}' ;
+NEWLINE : '\n';
+RETURN: 'return';
+DEF: 'def';
+SPACE: ' ';
 
-// Operadores aritméticos
-PLUS    : '+';
-MINUS   : '-';
-STAR    : '*';
-SLASH   : '/';
-FSLASH  : '//';
-PERCENT : '%';
-POWER   : '**';
+TRUE: 'True';
+FALSE: 'False';
+NOT : 'not' ;
 
-// Operadores relacionais
-EQUALS  : '==';
-NOTEQUAL: '!=';
-GT      : '>';
-LT      : '<';
-GTE     : '>=';
-LTE     : '<=';
+OP_BOOL: 'and' | 'or' | '&' | '|' ;
+EQUAL: '=';
+OP_ARIT: '+' | '-' | '/' | '*' | '**' | '//' | '%' ;
+OP_RELA: '==' | '!=' | '>' | '>=' | '<' | '<=' ;
+OP_ATRI: EQUAL | '+=' | '-=' | '*=' | '/=' ;
 
-// Operadores de atribuição
-ASSIGN  : '=';
-PLUSEQ  : '+=';
-MINUSEQ : '-=';
-STAREQ  : '*=';
-SLASHEQ : '/=';
-FSLEQ   : '//=';
-PERCENTEQ: '%=';
-POWEREQ : '**=';
+STRING : '"' ( ~["\\] | '\\"' )* '"';
 
-// Delimitadores e símbolos de bloco
-LPAREN  : '(';
-RPAREN  : ')';
-LBRACE  : '{';
-RBRACE  : '}';
-LBRACK  : '[';
-RBRACK  : ']';
-COMMA   : ',';
-COLON   : ':';
-DOT     : '.';
-SEMICOLON: ';';
-NEWLINE : '\r'? '\n' {skip();};
+INT: [0-9]+ ;
+FLOAT: INT '.' INT;
+COMPLEX: FLOAT [+\-] FLOAT 'j';
 
-// Tokens para identificadores, letras, dígitos e espaços em branco (no final do arquivo)
+NUMBER: INT
+  | FLOAT
+  | COMPLEX
+  ;
 
-// Identificadores e letras
-ID      : [a-zA-Z_][a-zA-Z0-9_]*;
+IF : 'if' ;
+ELSE : 'else' ;
+ELIF : 'elif' ;
 
-// Dígitos
-DIGIT   : [0-9];
+PRINT : 'print';
+FORMAT : 'format';
+FOR : 'for';
+IN : 'in';
+RANGE : 'range';
 
-// Espaços em branco
-WS      : [ \t\r\n]+ -> skip;
+ID: [a-zA-Z_][a-zA-Z_0-9]* ;
+WS: [\t\r\f]+ -> skip ;
