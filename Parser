@@ -3,7 +3,8 @@ options { tokenVocab=ExprLexer; }
 
 code : (stat|conditional|func|func_call)* EOF;
 
-stat : (expr|atrib|query) '\n'*;
+stat : (expr|atrib|query) '
+'*;
 
 expr : ID
 |INT
@@ -17,11 +18,21 @@ expr : ID
 |DOT OP_ARIT
 |'('expr*')'
 |func_call
+|ids
+|numeros
+|operacoesComExpressoes
+|expressoesEntreParenteses
 ;
+
+ids : ID;
+numeros : NUMBER;
+operacoesComExpressoes : expr OP_ARIT expr;
+expressoesEntreParenteses : LPAREN expr RPAREN;
 
 atrib : ID SPACE? '=' SPACE? expr;
 
-func : 'def' SPACE? ID '(' (ID (',' SPACE? ID)*)? ')' ':' NEWLINE SPACE* stat* SPACE* 'return'? SPACE? expr '\n';
+func : 'def' SPACE? ID '(' (ID (',' SPACE? ID)*)? ')' ':' NEWLINE SPACE* stat* SPACE* 'return'? SPACE? expr '
+';
 
 func_call : ID '(' (expr (',' SPACE? expr)*)? ')';
 
@@ -39,7 +50,8 @@ conditional: ifStat
 |elseStat
 ;
 
-ifStat : IF SPACE? '('? SPACE? (expr|query) SPACE? ')'? SPACE? ':' (NEWLINE)* SPACE* expr* (elifStat? elseStat?) '\n''return'? SPACE? expr*;
+ifStat : IF SPACE? '('? SPACE? (expr|query) SPACE? ')'? SPACE? ':' (NEWLINE)* SPACE* expr* (elifStat? elseStat?) '
+''return'? SPACE? expr*;
 elifStat : ELIF SPACE? '('? SPACE? (expr|query) SPACE? ')'? SPACE? ':' (NEWLINE)* SPACE* expr*;
 elseStat : ELSE SPACE? ':' (NEWLINE)* SPACE* (expr|query)*;
 
