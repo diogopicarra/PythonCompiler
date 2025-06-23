@@ -58,3 +58,6 @@ elseStat : ELSE SPACE? ':' (NEWLINE)* SPACE* (expr|query)*;
 printStatement : PRINT SPACE? '(' SPACE? STRING (SPACE? formatExpr)? SPACE? ')';
 simplePrintStatement : PRINT SPACE? '(' SPACE? STRING SPACE? ')';
 formatExpr : DOT SPACE? FORMAT SPACE? '(' SPACE? expr SPACE? ')';
+
+loop_while : 'while' SPACE? '(' SPACE? query SPACE? ')' SPACE? ':' SPACE? stat*;
+loop_for : 'for' SPACE? '(' SPACE? atrib SPACE? ';' SPACE? query SPACE? ';' SPACE? atrib SPACE? ')' SPACE? ':' SPACE? stat*;
